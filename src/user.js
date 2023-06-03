@@ -17,26 +17,36 @@ const searchFriends = async (req, res) => {
 };
 
 const addFreindship = async (req, res) => {
-  const userId = parseInt(req.params.userId);
-  const friendId = parseInt(req.params.friendId);
+  try {
+    const userId = parseInt(req.params.userId);
+    const friendId = parseInt(req.params.friendId);
 
-  const data = await addFriend({ userId, friendId });
+    const data = await addFriend({ userId, friendId });
 
-  res.statusCode = 200;
-  res.json({
-    success: true,
-    users: data,
-  });
+    res.statusCode = 200;
+    res.json({
+      success: true,
+      users: data,
+    });
+  } catch (error) {
+    res.statusCode = 500;
+    return res.json({ success: false, error: err });
+  }
 };
 const removeFreindship = async (req, res) => {
-  const userId = parseInt(req.params.userId);
-  const friendId = parseInt(req.params.friendId);
-  const data = await removeFriend({ userId, friendId });
-  res.statusCode = 200;
-  res.json({
-    success: true,
-    users: data,
-  });
+  try {
+    const userId = parseInt(req.params.userId);
+    const friendId = parseInt(req.params.friendId);
+    const data = await removeFriend({ userId, friendId });
+    res.statusCode = 200;
+    res.json({
+      success: true,
+      users: data,
+    });
+  } catch (error) {
+    res.statusCode = 500;
+    return res.json({ success: false, error: err });
+  }
 };
 
 module.exports = {
