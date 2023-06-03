@@ -1,5 +1,5 @@
 const sqlite3 = require('sqlite3');
-const db = new sqlite3.Database('./db.db');
+const db = new sqlite3.Database(':memory:');
 
 const init = async () => {
   await run(
@@ -8,9 +8,13 @@ const init = async () => {
   await run(
     'CREATE TABLE Friends (id INTEGER PRIMARY KEY AUTOINCREMENT, userId int, friendId int);'
   );
+  await run('CREATE INDEX idx_friends_userId ON Friends (userId);');
+  await run('CREATE INDEX idx_friends_friendId ON Friends (friendId);');
+  await run('CREATE INDEX idx_users_name ON Users (name);');
+
   const users = [];
   const names = ['foo', 'bar', 'baz'];
-  for (i = 0; i < 50; ++i) {
+  for (i = 0; i < 2700; ++i) {
     let n = i;
     let name = '';
     for (j = 0; j < 3; ++j) {
