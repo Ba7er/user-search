@@ -1,4 +1,4 @@
-const { search } = require('./user-service');
+const { search, addFriend, removeFriend } = require('./user-service');
 
 const searchFriends = async (req, res) => {
   const query = req.params.query;
@@ -17,10 +17,26 @@ const searchFriends = async (req, res) => {
 };
 
 const addFreindship = async (req, res) => {
-  return {};
+  const userId = parseInt(req.params.userId);
+  const friendId = parseInt(req.params.friendId);
+
+  const data = await addFriend({ userId, friendId });
+
+  res.statusCode = 200;
+  res.json({
+    success: true,
+    users: data,
+  });
 };
 const removeFreindship = async (req, res) => {
-  return {};
+  const userId = parseInt(req.params.userId);
+  const friendId = parseInt(req.params.friendId);
+  const data = await removeFriend({ userId, friendId });
+  res.statusCode = 200;
+  res.json({
+    success: true,
+    users: data,
+  });
 };
 
 module.exports = {

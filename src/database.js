@@ -85,4 +85,5 @@ const all = (query) => {
 module.exports = {
   init,
   all,
+  db,
 };
