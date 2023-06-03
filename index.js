@@ -1,4 +1,3 @@
-const app = require("./app");
-const user = require("./user");
-
+const app = require('./src/app');
+const user = require('./src/user');
 user.init().then(() => app.listen(3001));

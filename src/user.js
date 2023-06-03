@@ -67,6 +67,7 @@ const search = async (req, res) => {
     `SELECT id, name, id in (SELECT friendId from Friends where userId = ${userId}) as connection from Users where name LIKE '${query}%' LIMIT 20;`
   )
     .then((results) => {
+      console.log(results);
       res.statusCode = 200;
       res.json({
         success: true,
