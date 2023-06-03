@@ -1,0 +1,3 @@
+{
+  "exec": "rm -f db.db && node index.js"
+}
