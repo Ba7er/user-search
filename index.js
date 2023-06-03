@@ -1,3 +1,3 @@
 const app = require('./src/app');
-const user = require('./src/user');
-user.init().then(() => app.listen(3001));
+const db = require('./src/database');
+db.init().then(() => app.listen(3001));
