@@ -14,7 +14,7 @@ const init = async () => {
 
   const users = [];
   const names = ['foo', 'bar', 'baz'];
-  for (i = 0; i < 2700; ++i) {
+  for (i = 0; i < 100; ++i) {
     let n = i;
     let name = '';
     for (j = 0; j < 3; ++j) {
@@ -75,19 +75,7 @@ const run = (query) => {
   });
 };
 
-const all = (query) => {
-  return new Promise((resolve, reject) => {
-    db.all(query, (err, results) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(results);
-      }
-    });
-  });
-};
 module.exports = {
   init,
-  all,
   db,
 };
