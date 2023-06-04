@@ -6,7 +6,7 @@ const DELETE_FREIND_QRY = () =>
 
 const SEARCH_FRIEND_QYR = ({ userId, query }) =>
   `
-  SELECT DISTINCT U.id, U.name,
+  SELECT  U.id, U.name,
     CASE
       WHEN F1.friendId IS NOT NULL THEN 1
       WHEN F2.friendId IS NOT NULL THEN 2
@@ -20,6 +20,7 @@ const SEARCH_FRIEND_QYR = ({ userId, query }) =>
   LEFT JOIN Friends F3 ON U.id = F3.friendId AND F3.userId IN (SELECT friendId FROM Friends WHERE userId IN (SELECT friendId FROM Friends WHERE userId = ${userId}))
   LEFT JOIN Friends F4 ON U.id = F4.friendId AND F4.userId IN (SELECT friendId FROM Friends WHERE userId IN (SELECT friendId FROM Friends WHERE userId IN (SELECT friendId FROM Friends WHERE userId = ${userId})))
   WHERE U.name LIKE '${query}%'
+  GROUP BY U.id, U.name
   LIMIT 20`;
 module.exports = {
   INSERT_FRIEND_QRY,
