@@ -1,5 +1,6 @@
 const UserService = require('./user-service');
-const db = require('./database');
+const db = require('../database/');
+
 const searchFriends = async (req, res) => {
   const query = req.params.query;
   const userId = parseInt(req.params.userId);

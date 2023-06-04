@@ -2,7 +2,8 @@ const {
   DELETE_FREIND_QRY,
   INSERT_FRIEND_QRY,
   SEARCH_FRIEND_QYR,
-} = require('./sql');
+} = require('../database/sql');
+
 class UserService {
   constructor(database) {
     const { db } = database;
