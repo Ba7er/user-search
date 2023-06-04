@@ -1,5 +1,5 @@
 const sqlite3 = require('sqlite3');
-const db = new sqlite3.Database('./db.db');
+const db = new sqlite3.Database(':memory');
 
 const init = async () => {
   await run(
@@ -14,7 +14,7 @@ const init = async () => {
 
   const users = [];
   const names = ['foo', 'bar', 'baz'];
-  for (i = 0; i < 100; ++i) {
+  for (i = 0; i < 27000; ++i) {
     let n = i;
     let name = '';
     for (j = 0; j < 3; ++j) {
